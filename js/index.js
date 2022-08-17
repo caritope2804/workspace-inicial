@@ -12,3 +12,8 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
+
+if (localStorage.getItem("loggedUser")===null || localStorage.getItem("loggedUser")===false)
+    location.replace("login.html");
+
+    

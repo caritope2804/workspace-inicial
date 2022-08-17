@@ -141,3 +141,5 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCategoriesList();
     });
 });
+
+location.replace("login.html")
