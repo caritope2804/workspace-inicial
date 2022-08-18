@@ -44,4 +44,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 });
 
-location.replace("login.html")
+//location.replace("login.html")
+
+if (localStorage.getItem("loggedUser")===null || localStorage.getItem("loggedUser")===false)
+    location.replace("login.html");
