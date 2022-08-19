@@ -143,5 +143,5 @@ document.addEventListener("DOMContentLoaded", function(e){
 });
 
 //location.replace("login.html")
-if (localStorage.getItem("loggedUser")===null || localStorage.getItem("loggedUser")==="false")
+if (sessionStorage.getItem("loggedUser")===null || sessionStorage.getItem("loggedUser")==="false")
     location.replace("login.html");

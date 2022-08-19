@@ -5,9 +5,9 @@
 function validateLogin(){
  
   
-localStorage.setItem("loggedUser",true);
+sessionStorage.setItem("loggedUser",true);
   
 }
-localStorage.setItem("loggedUser",false);
+sessionStorage.setItem("loggedUser",false);
 
 
