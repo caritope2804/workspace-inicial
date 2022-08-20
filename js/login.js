@@ -5,4 +5,5 @@ sessionStorage.setItem("loggedUser",false);
 
 function SignOut(){
     sessionStorage.setItem("loggedUser",false);
+        location.replace("login.html");
 }
