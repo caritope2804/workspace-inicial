@@ -142,6 +142,6 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 });
 
-//location.replace("login.html")
+
 if (sessionStorage.getItem("loggedUser")===null || sessionStorage.getItem("loggedUser")==="false")
-    location.replace("login.html");
+location.replace("login.html");

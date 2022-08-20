@@ -44,7 +44,5 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 });
 
-
-
 if (sessionStorage.getItem("loggedUser")===null || sessionStorage.getItem("loggedUser")==="false")
-    location.replace("login.html");
+location.replace("login.html");
