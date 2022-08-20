@@ -13,9 +13,8 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
-if (sessionStorage.getItem("loggedUser")===null || sessionStorage.getItem("loggedUser")==="false");
-
-
+if (sessionStorage.getItem("loggedUser")===null || sessionStorage.getItem("loggedUser")==="false")
+location.replace("login.html");
     
 
     
