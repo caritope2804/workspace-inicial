@@ -34,6 +34,7 @@
       <script>
         function handleCredentialResponse(response) {
           sessionStorage.setItem("loggedUser",true);
+          location.replace("index.html")
           //console.log("Encoded JWT ID token: " + response.credential);
         }
         window.onload = function () {
@@ -70,5 +71,5 @@
   </footer>
 
 </body>
-<script src="js/login.js"></script>
+<script src="js/login.js?1"></script>
 </html>
