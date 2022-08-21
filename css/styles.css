@@ -190,12 +190,11 @@ a.custom-card:hover {
 }
 
 
-/* Bordered form */
 form {
   border: 3px solid #f1f1f1;
 }
 
-/* Full-width inputs */
+
 input[type=email], input[type=password] {
   width: 100%;
   padding: 12px 20px;
@@ -205,7 +204,7 @@ input[type=email], input[type=password] {
   box-sizing: border-box;
 }
 
-/* Set a style for all buttons */
+
 button {
   background-color: #54A396;
   color: white;
@@ -216,30 +215,27 @@ button {
   width: 100%;
 }
 
-/* Add a hover effect for buttons */
+
 button:hover {
   opacity: 0.8;
 }
 
 
-/* Center the avatar image inside this container */
 .imgcontainer {
   text-align: center;
   margin: 24px 0 12px 0;
 }
 
-/* Avatar image */
+
 img.avatar {
   width: 40%;
   border-radius: 50%;
 }
 
-/* Add padding to containers */
 .container {
   padding: 16px;
 }
 
-/* The "Forgot password" text */
 span.psw {
   float: right;
   padding-top: 16px;
