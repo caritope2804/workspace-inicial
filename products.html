@@ -31,6 +31,9 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" id="Usermail"></a>
+          </li>
+          <li class="nav-item">
           </li>
         </ul>
       </div>
@@ -38,9 +41,51 @@
   </nav>
   <main class="pb-5 container">
     <div class="container">
+      <div class="text-center p-4">
+        <h2> Nuestros productos disponibles </h2>
+      </div>
+    <div class="container">
+      <input type="text" id="livesearch" placeholder="Buscar...">
+      <button id="buscar"> Buscar</button>
+      
+    </div>
+  <div class="col text-end">
+    <input type="radio" class="btn-check" name="options" id="sortByDescPrice" checked>
+      <label class="btn btn-light" for="sortByDescPrice"><i class="fas fa-sort-amount-down mr-1">$</i></label>
+      <input type="radio" class="btn-check" name="options" id="sortByAscPrice" checked>
+      <label class="btn btn-light" for="sortByAscPrice"><i class="fas fa-sort-amount-up mr-1">$</i></label>
+      <input type="radio" class="btn-check" name="options" id="sortBySoldCount" checked>
+      <label class="btn btn-light" for="sortBySoldCount"><i class="fas fa-sort-amount-down mr-1">Rel.</i></label>
+
+  </div>
+  <div class="row">
+    <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+      <div class="row container p-0 m-0">
+        <div class="col">
+          <p class="font-weight-normal text-end my-2">Precio</p>
+        </div>
+        <div class="col">
+          <input class="form-control" type="number" placeholder="min." id="rangeFilterMinPrice">
+        </div>
+        <div class="col">
+          <input class="form-control" type="number" placeholder="máx." id="rangeFilterMaxPrice">
+        </div>
+       
+        <div class="col-3 p-0">
+          <div class="btn-group" role="group">
+            <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
+            <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="container">
       <div class="list-group" id="prod-list-container">
       </div>
     </div>
+    
   </main>
   <footer class="text-muted">
     <div class="container">

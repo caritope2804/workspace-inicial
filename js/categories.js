@@ -142,4 +142,6 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 });
 
-
+if (localStorage.getItem("text")) {
+    document.getElementById("Usermail").innerHTML = localStorage.getItem("text"); 
+}
