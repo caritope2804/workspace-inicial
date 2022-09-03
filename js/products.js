@@ -3,9 +3,8 @@ const ORDER_ASC_BY_PRICE = "0-10000000";
 const ORDER_DESC_BY_PRICE = "10000000-0";
 const ORDER_BY_PROD_CANT_SOLD = "Cant.sold";
 const LiveSearch = document.querySelector("#livesearch");
-//const Boton = document.querySelector("#buscar");
 const resultado = document.querySelector("#prod-list-container")
-let productCarsArray = [];
+let productArray = [];
 let currentSortCriteria = undefined;
 let minPrice = undefined;
 let maxPrice = undefined;
@@ -45,7 +44,7 @@ const filtrar = () =>{
     resultado.innerHTML = "";
     const texto = LiveSearch.value.toLowerCase();
 
-    for(let product of productCarsArray ){
+    for(let product of productArray ){
         let nombre = product.name.toLowerCase();
         let descripcion = product.description.toLowerCase();
         if(nombre.indexOf(texto) !== -1 || descripcion.indexOf(texto) !== -1){
@@ -77,7 +76,7 @@ const filtrar = () =>{
     }
 
 }
-//Boton.addEventListener("click", filtrar)
+
 LiveSearch.addEventListener("keyup", filtrar)
 
 filtrar();
@@ -93,28 +92,28 @@ function showProductCarsList() {
 
     let htmlContentToAppend = "";
     
-    for (let i = 0; i < productCarsArray.length; i++) {
-        let productCars = productCarsArray[i];
+    for (let i = 0; i < productArray.length; i++) {
+        let allProducts = productArray[i];
 
-        if (((minPrice == undefined) || (minPrice != undefined && parseInt(productCars.cost) >= minPrice)) &&
-            ((maxPrice == undefined) || (maxPrice != undefined && parseInt(productCars.cost) <= maxPrice))){
+        if (((minPrice == undefined) || (minPrice != undefined && parseInt(allProducts.cost) >= minPrice)) &&
+            ((maxPrice == undefined) || (maxPrice != undefined && parseInt(allProducts.cost) <= maxPrice))){
         
 
             htmlContentToAppend += `
-            <div onclick="setCatID(${productCars.id})" class="list-group-item list-group-item-action cursor-active">
+            <div onclick="setCatID(${allProducts.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
-                        <img src="${productCars.image}" alt="${productCars.description}" class="img-thumbnail">
+                        <img src="${allProducts.image}" alt="${allProducts.description}" class="img-thumbnail">
                     </div>
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">${productCars.name}</h4>
-                            <small class="text-muted">${productCars.soldCount} cantidad artículos vendidos</small>
+                            <h4 class="mb-1">${allProducts.name}</h4>
+                            <small class="text-muted">${allProducts.soldCount} cantidad artículos vendidos</small>
                         </div>
-                        <p class="mb-1">${productCars.description}</p>
+                        <p class="mb-1">${allProducts.description}</p>
                         <br>
-                        <p class="mb-1">${productCars.currency}</p>
-                        <p class="mb-1">${productCars.cost}</p>
+                        <p class="mb-1">${allProducts.currency}</p>
+                        <p class="mb-1">${allProducts.cost}</p>
 
                     </div>
                 </div>
@@ -129,10 +128,10 @@ function sortAndShowProducts(sortCriteria, productsArray){
     currentSortCriteria = sortCriteria;
 
     if(productsArray != undefined){
-        productCarsArray = productsArray;
+        productArray = productsArray;
     }
 
-    productCarsArray = sortProducts(currentSortCriteria, productCarsArray);
+    productArray = sortProducts(currentSortCriteria, productArray);
 
     //Muestro las categorías ordenadas
     showProductCarsList();
@@ -141,7 +140,7 @@ function sortAndShowProducts(sortCriteria, productsArray){
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCT_AUTOS_URL).then(function(resultObj){
         if(resultObj.status === "ok"){
-            productCarsArray= resultObj.data.products
+            productArray= resultObj.data.products
             showProductCarsList()
         }
     });
