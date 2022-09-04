@@ -39,10 +39,19 @@ let getJSONData = function(url){
         return result;
     });
 }
-const input_user = document.getElementById("email");
-const button_login = document.getElementById("ingreso");
 
-button_login.addEventListener("click", (evt) =>{
-    if (input_user.value) localStorage.setItem("text", input_user.value);
-    else localStorage.removeItem("text");
-})
+function SignOut(){
+  sessionStorage.setItem("logged",false);
+      location.replace("login.html");
+      sessionStorage.setItem("email","");
+}
+if (sessionStorage.getItem("logged")===null || sessionStorage.getItem("logged")==="false"){
+  console.log("hola");
+  location.replace("login.html");
+  
+}
+else{
+  document.getElementById("Usermail").innerHTML = sessionStorage.getItem("email"); 
+  console.log(sessionStorage.getItem("email"));
+}
+    

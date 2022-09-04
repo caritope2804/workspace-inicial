@@ -1,9 +1,7 @@
 function validateLogin(){
-    sessionStorage.setItem("loggedUser",true);
+    sessionStorage.setItem("logged",true);
+    sessionStorage.setItem("email",document.getElementById("email").value);
 }
-sessionStorage.setItem("loggedUser",false);
+sessionStorage.setItem("logged",false);
+sessionStorage.setItem("email","")
 
-function SignOut(){
-    sessionStorage.setItem("loggedUser",false);
-        location.replace("login.html");
-}

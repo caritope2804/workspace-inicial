@@ -13,10 +13,5 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
-if (sessionStorage.getItem("loggedUser")===null || sessionStorage.getItem("loggedUser")==="false")
-location.replace("login.html");
-    
-if (localStorage.getItem("text")) {
-    document.getElementById("Usermail").innerHTML = localStorage.getItem("text"); 
-}
+
     
