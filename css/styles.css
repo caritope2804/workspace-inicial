@@ -240,4 +240,11 @@ span.psw {
   float: right;
   padding-top: 16px;
 }
+.checked {
+  color: orange;
+}
+.submitComments{
+width: 10%;
+}
+
 

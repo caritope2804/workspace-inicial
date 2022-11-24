@@ -46,15 +46,65 @@
           </li>
           <li class="nav-item">
           </li>
+          <li class="nav-item">
+            <div class="dropdown">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="Usermail" data-bs-toggle="dropdown" aria-expanded="false">
+                
+              </a>
+            
+              <ul class="dropdown-menu" aria-labelledby="Usermail">
+                <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <h2>Perfil</h2>
+      <br></br>
+      <div class=" col-md-3 container d-flex align-content-end gap-3 ">
+        <img id="userImageProfile" class="img-thumbnail"/>
       </div>
+      
+      <br></br>
+      <form class="row g-3" onsubmit="userProfileSaveData()">
+        <div class="mb-3 col-md-6">
+          <label for="name" class="form-label">Primer nombre*</label>
+          <input type="text" class="form-control" id="name" aria-describedby="emailHelp" required>
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="secondname" class="form-label">Segundo nombre</label>
+          <input type="text" class="form-control" id="secondname" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="surname" class="form-label">Primer apellido*</label>
+          <input type="text" class="form-control" id="surname" aria-describedby="emailHelp" required>
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="secondsurname" class="form-label">Segundo apellido</label>
+          <input type="text" class="form-control" id="secondsurname" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="email1" class="form-label">E-mail</label>
+          <input type="text" class="form-control" id="email1" aria-describedby="email1">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="userImage" class="form-label">Imagen de perfil</label>
+          <input type="file" accept="image/*;capture=camera" class="form-control" id="userImage" aria-describedby="emailHelp" onchange="gotPhoto(this)">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="cellphone" class="form-label">Teléfono de contacto*</label>
+          <input type="text" class="form-control" id="cellphone" aria-describedby="emailHelp" required>
+        </div>
+        <button type="submit" class="btn btn-primary" >Guardar Cambios</button>
+      </div>
+        
+      </form>
     </div>
   </main>
   <footer class="text-muted">

@@ -30,16 +30,172 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <div class="dropdown">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="Usermail" data-bs-toggle="dropdown" aria-expanded="false">
+                
+              </a>
+            
+              <ul class="dropdown-menu" aria-labelledby="Usermail">
+                <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+              </ul>
+            </div>
           </li>
         </ul>
+        
       </div>
     </div>
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div id="selectedProducts">
       </div>
+      <div>
+        <h2>Tipo de envío</h2>
+        <form  target="" class="needs-validation" id="formuser" novalidate>
+          <div onchange="calcPrices()">
+            <input type="radio" id="prem" name="envio" value="15" checked>
+            <label for="prem">Premium de 2 a 5 días (15%)</label><br>
+            <input type="radio" id="exp" name="envio" value="7">
+            <label for="exp">Express de 5 a 8 días (7%)</label><br>
+            <input type="radio" id="stand" name="envio" value="5">
+            <label for="stand">Standard de 12 a 15 días (5%)</label><br><br>
+          </div>
+
+          <h2>Dirección de envío</h2>
+
+
+          <div class="mb-6">
+            <label for="calle" class="form-label">Calle</label>
+            <input type="text" class="form-control" id="calle" aria-describedby="emailHelp" required>
+            <div class="invalid-feedback">Ingresa una calle</div>
+            <label for="numero" class="form-label">Número</label>
+            <input type="text" class="form-control" id="numero" aria-describedby="emailHelp" required>
+            <div class="invalid-feedback">Ingresa un número</div>
+            <label for="esquina" class="form-label">Esquina</label>
+            <input type="text" class="form-control" id="esquina" aria-describedby="emailHelp" required>
+            <div class="invalid-feedback">Ingresa una esquina</div>
+          </div>
+          <hr>
+          </hr>
+          <div class="col-md-5 col-lg-4 order-md-last">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+              <span class="text-primary">Costos</span>
+            </h4>
+            <ul class="list-group mb-3"></ul>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0">Subtotal</h6>
+                <small class="text-muted">Costo unitario del producto por cantidad</small>
+              </div>
+              <span class="text-muted result" id="resultsubtotal"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0">Costo de envío</h6>
+                <small class="text-muted">Según el tipo de envío</small>
+              </div>
+              <span class="text-muted" id="shippingcost">USD</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0">Total ($)</h6>
+              </div>
+              <span class="text-muted" id="totalcost">USD</span>
+            </li>
+
+          </div>
+          <hr>
+          </hr>
+
+          <h4>Forma de pago</h4>
+          <div class="col-sm-12">
+            <p id="selecpayment">No ha seleccionado</p>
+
+            <span id="selecpaymentalert"></span>
+            <button type="button" class="btn btn-link ps-0" data-bs-toggle="modal"
+              data-bs-target="#modalTerminos">Seleccionar</button>
+          </div>
+          <div class="modal fade" id="modalTerminos" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5">Forma de pago</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                  <div class="form-check" id="userSelect">
+                    <div onchange="paymentMethod()">
+
+                      <input id="credit" name="paymentMethod" type="radio" class="form-check-input"
+                        onclick="validatePayments()" required>
+                      <label class="form-check-label" for="paymentMethod">Tarjeta de crédito</label>
+                      <hr>
+                      </hr>
+                      <div class="row gy-3">
+                        <div class="col md-6">
+                          <label for="cc-number" class="form-label">Número tarjeta</label>
+                          <input type="text" class="form-control" id="cc-number" required>
+
+                        </div>
+                        <div class="col md-6">
+                          <label for="cc-secnumber" class="form-label"> Código de seg.</label>
+                          <input type="text" class="form-control" id="cc-secnumber" required>
+                        </div>
+                        <br>
+
+                      </div>
+                      <div class="row gy-3">
+                        <div class="col-md-6">
+                          <label for="cc-expiration" class="form-label">Vencimiento (MM/AA)</label>
+                          <input type="text" class="form-control" id="cc-expiration" required>
+
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <div onchange="paymentMethod()">
+                      <input id="transfer" name="paymentMethod" type="radio" class="form-check-input"
+                        onclick="validatePayments()" required>
+                      <label class="form-check-label" for="paymentMethod">Transferencia bancaria</label>
+                      <hr>
+                      </hr>
+                      <div class="row gy-3">
+                        <div class="col-md-6">
+                          <label for="trans-number" class="form-label">Número de cuenta</label>
+                          <input type="text" class="form-control" id="trans-number" required>
+
+                        </div>
+
+                      </div>
+                    </div>
+                    <br>
+                    <button id="closebtn" class="w-100 btn btn-primary btn-lg" data-bs-dismiss="modal"
+                      type="button">Cerrar</button>
+                  </div>
+
+
+
+
+                </div>
+
+
+              </div>
+
+            </div>
+
+          </div>
+          <div id="liveAlertPlaceholder">
+            <button class="w-100 btn btn-primary btn-lg" id="liveAlertBtn" type="submit" onclick="validatePayments()">Enviar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
     </div>
   </main>
   <footer class="text-muted">
@@ -63,6 +219,8 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  <script src="js/login.js"></script>
+
 </body>
 
 </html>

@@ -10,6 +10,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -31,18 +32,74 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <div class="dropdown">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="Usermail"
+                data-bs-toggle="dropdown" aria-expanded="false">
+
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="Usermail">
+                <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+
+  <div class="container mt-4" id="infoproduct">
+
+    <div class="d-flex flex-row-reverse bd-highlight container mt-4">
+      <button id="comprar" class="col-2 p-2 bd-highlight" onclick="buy()">Comprar</button>
     </div>
-  </main>
+    <div class="d-flex flex-row bd-highlight mb-3 "></div>
+    <h2 class="p-2 bd-highlight" id="ProductTittle"></h2>
+
+
+    <div id="productData"></div>
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div id="productImages" class="carousel-inner">
+
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <h3> Comentarios:</h3>
+    <div id="productComments"></div>
+    <form action="" onsubmit="addComment()">
+      <h3>Comentar</h3>
+      <label for="tuopinion">Tu opinión:</label><br>
+      <textarea id="comentarioUsuario"></textarea> <br>
+      <p>Tu puntuación:</p>
+      <select id="puntaje" name="puntaje">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select><br><br>
+      <button type="submit" class="submitComments">Enviar</button>
+    </form>
+    <h3>Productos relacionados</h3>
+    <div id="relatedProducts" class="container d-flex justify-content-start gap-3 "></div>
+  </div>
+  </div>
+
+
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">

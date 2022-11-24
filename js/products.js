@@ -10,28 +10,27 @@ let minPrice = undefined;
 let maxPrice = undefined;
 
 
-function sortProducts(criteria, array){
+function sortProducts(criteria, array) {
     let result = [];
-    if (criteria === ORDER_ASC_BY_PRICE)
-    {
-        result = array.sort(function(a, b) {
-            if ( a.cost < b.cost ){ return -1; }
-            if ( a.cost > b.cost ){ return 1; }
+    if (criteria === ORDER_ASC_BY_PRICE) {
+        result = array.sort(function (a, b) {
+            if (a.cost < b.cost) { return -1; }
+            if (a.cost > b.cost) { return 1; }
             return 0;
         });
-    }else if (criteria === ORDER_DESC_BY_PRICE){
-        result = array.sort(function(a, b) {
-            if ( a.cost > b.cost ){ return -1; }
-            if ( a.cost < b.cost){ return 1; }
+    } else if (criteria === ORDER_DESC_BY_PRICE) {
+        result = array.sort(function (a, b) {
+            if (a.cost > b.cost) { return -1; }
+            if (a.cost < b.cost) { return 1; }
             return 0;
         });
-    }else if (criteria === ORDER_BY_PROD_CANT_SOLD){
-        result = array.sort(function(a, b) {
+    } else if (criteria === ORDER_BY_PROD_CANT_SOLD) {
+        result = array.sort(function (a, b) {
             let aCount = parseInt(a.soldCount);
             let bCount = parseInt(b.soldCount);
 
-            if ( aCount > bCount ){ return -1; }
-            if ( aCount < bCount ){ return 1; }
+            if (aCount > bCount) { return -1; }
+            if (aCount < bCount) { return 1; }
             return 0;
         });
     }
@@ -40,15 +39,15 @@ function sortProducts(criteria, array){
 }
 
 
-const filtrar = () =>{
+const filtrar = () => {
     resultado.innerHTML = "";
     const texto = LiveSearch.value.toLowerCase();
 
-    for(let product of productArray ){
+    for (let product of productArray) {
         let nombre = product.name.toLowerCase();
         let descripcion = product.description.toLowerCase();
-        if(nombre.indexOf(texto) !== -1 || descripcion.indexOf(texto) !== -1){
-             resultado.innerHTML += ` 
+        if (nombre.indexOf(texto) !== -1 || descripcion.indexOf(texto) !== -1) {
+            resultado.innerHTML += ` 
              <div class="row">
                     <div class="col-3">
                         <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
@@ -65,11 +64,11 @@ const filtrar = () =>{
 
                     </div>
                 </div>
-                ` 
+                `
 
         }
     }
-    if (resultado.innerHTML === ""){
+    if (resultado.innerHTML === "") {
         resultado.innerHTML += `
         <h2> Producto no encontrado... <h2>
         `
@@ -91,17 +90,17 @@ filtrar();
 function showProductCarsList() {
 
     let htmlContentToAppend = "";
-    
+
     for (let i = 0; i < productArray.length; i++) {
         let allProducts = productArray[i];
 
         if (((minPrice == undefined) || (minPrice != undefined && parseInt(allProducts.cost) >= minPrice)) &&
-            ((maxPrice == undefined) || (maxPrice != undefined && parseInt(allProducts.cost) <= maxPrice))){
-        
+            ((maxPrice == undefined) || (maxPrice != undefined && parseInt(allProducts.cost) <= maxPrice))) {
+
 
             htmlContentToAppend += `
-            <div onclick="setCatID(${allProducts.id})" class="list-group-item list-group-item-action cursor-active">
-                <div class="row">
+            <div onclick="setProdId(${allProducts.id})" class="list-group-item list-group-item-action cursor-active">
+                <div class="row" >
                     <div class="col-3">
                         <img src="${allProducts.image}" alt="${allProducts.description}" class="img-thumbnail">
                     </div>
@@ -119,15 +118,18 @@ function showProductCarsList() {
                 </div>
              </div>
               `
-            }
-        document.getElementById("prod-list-container").innerHTML = htmlContentToAppend; 
+
+
+        }
+        document.getElementById("prod-list-container").innerHTML = htmlContentToAppend;
+
     }
 }
 
-function sortAndShowProducts(sortCriteria, productsArray){
+function sortAndShowProducts(sortCriteria, productsArray) {
     currentSortCriteria = sortCriteria;
 
-    if(productsArray != undefined){
+    if (productsArray != undefined) {
         productArray = productsArray;
     }
 
@@ -137,25 +139,25 @@ function sortAndShowProducts(sortCriteria, productsArray){
     showProductCarsList();
 }
 
-document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PRODUCT_AUTOS_URL).then(function(resultObj){
-        if(resultObj.status === "ok"){
-            productArray= resultObj.data.products
+document.addEventListener("DOMContentLoaded", function (e) {
+    getJSONData(PRODUCT_AUTOS_URL).then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            productArray = resultObj.data.products
             showProductCarsList()
         }
     });
-    document.getElementById("sortByDescPrice").addEventListener("click", function(){
+    document.getElementById("sortByDescPrice").addEventListener("click", function () {
         sortAndShowProducts(ORDER_DESC_BY_PRICE);
     });
 
-    document.getElementById("sortByAscPrice").addEventListener("click", function(){
+    document.getElementById("sortByAscPrice").addEventListener("click", function () {
         sortAndShowProducts(ORDER_ASC_BY_PRICE);
     });
 
-    document.getElementById("sortBySoldCount").addEventListener("click", function(){
+    document.getElementById("sortBySoldCount").addEventListener("click", function () {
         sortAndShowProducts(ORDER_BY_PROD_CANT_SOLD);
     });
-    document.getElementById("clearRangeFilter").addEventListener("click", function(){
+    document.getElementById("clearRangeFilter").addEventListener("click", function () {
         document.getElementById("rangeFilterMinPrice").value = "";
         document.getElementById("rangeFilterMaxPrice").value = "";
 
@@ -165,25 +167,28 @@ document.addEventListener("DOMContentLoaded", function(e){
         showProductCarsList();
     });
 
-    document.getElementById("rangeFilterCount").addEventListener("click", function(){
+    document.getElementById("rangeFilterCount").addEventListener("click", function () {
         minPrice = document.getElementById("rangeFilterMinPrice").value;
         maxPrice = document.getElementById("rangeFilterMaxPrice").value;
 
-        if ((minPrice != undefined) && (minPrice != "") && (parseInt(minPrice)) >= 0){
+        if ((minPrice != undefined) && (minPrice != "") && (parseInt(minPrice)) >= 0) {
             minPrice = parseInt(minPrice);
         }
-        else{
+        else {
             minPrice = undefined;
         }
 
-        if ((maxPrice != undefined) && (maxPrice != "") && (parseInt(maxPrice)) >= 0){
+        if ((maxPrice != undefined) && (maxPrice != "") && (parseInt(maxPrice)) >= 0) {
             maxPrice = parseInt(maxPrice);
         }
-        else{
+        else {
             maxPrice = undefined;
         }
 
         showProductCarsList();
     });
+
+
+
 });
 
